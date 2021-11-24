@@ -1,6 +1,8 @@
-const PDFDocument = require("pdfkit");
-const doc = new PDFDocument({autoFirstPage: false});
-let baseString = `
+module.exports.createPDF = (title) => {
+  const fs = require("fs");
+  const PDFDocument = require("pdfkit");
+  const doc = new PDFDocument({ autoFirstPage: false });
+  let baseString = `${title}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac urna odio. Maecenas velit velit, efficitur vel dapibus vel, cursus id ante. Vestibulum mattis ipsum eget convallis tristique. Duis libero neque, laoreet sit amet convallis eget, volutpat et nunc. Nullam volutpat enim sit amet ultricies accumsan. Morbi in sem ac velit pharetra placerat. Sed nec nunc lacinia, placerat quam non, suscipit leo. Sed sed tempor odio, consectetur mattis lectus. Aliquam tristique rhoncus lacus pharetra maximus. Vivamus sit amet urna semper, scelerisque mi et, fringilla ipsum. Proin non imperdiet metus, id varius dui. Nulla vulputate purus elit, ut imperdiet erat dapibus sed.
 
 Aenean finibus at urna ac blandit. Nunc vitae nulla lacinia lorem ultrices tempor. Ut felis risus, tincidunt nec bibendum eget, euismod vel dui. Aenean sollicitudin cursus elit, id malesuada purus elementum vitae. Suspendisse potenti. Fusce ultricies, neque posuere accumsan tristique, erat libero suscipit justo, a tristique risus sem dapibus odio. Vestibulum mollis mi enim, quis fermentum turpis lacinia at. Integer malesuada, urna egestas gravida egestas, nibh eros porta lorem, at dictum urna ipsum et justo. Nunc vehicula lacinia dignissim. Sed pretium purus libero, auctor convallis quam lobortis ut. Morbi vitae nisl magna.
@@ -82,18 +84,15 @@ Mauris et placerat diam. Sed rhoncus luctus tincidunt. Ut volutpat urna nisi, et
 Donec mattis, urna consectetur molestie suscipit, est nulla scelerisque orci, at pharetra risus mauris id quam. Vivamus pharetra sit amet ex non pulvinar. Duis condimentum facilisis turpis, accumsan scelerisque odio finibus congue. Sed feugiat elementum lectus, quis pharetra sapien luctus eu. Pellentesque vitae cursus odio. In tempor porta ante, a pellentesque augue tincidunt id. Phasellus consequat vulputate est a hendrerit. Pellentesque dui metus, cursus non ex id, lacinia vulputate massa. Sed et erat lorem. Donec congue metus et dolor fermentum sodales. Aliquam luctus, metus a cursus dignissim, diam dui maximus massa, sed aliquam massa felis non risus. Mauris tempor urna ac diam consectetur vehicula. Proin lectus enim, porta in commodo eu, porta nec tellus.
 
 Etiam semper non nunc eu gravida. Nam in justo massa. Suspendisse commodo, mauris eget commodo fringilla, nisi leo porta ligula, non fermentum est risus vitae libero. Proin ornare euismod iaculis. Sed non ultricies lorem, ac semper neque. Etiam vestibulum fringilla libero, ac feugiat erat dapibus ac. Ut ullamcorper mi et nisi pharetra, ac posuere nunc dapibus. Suspendisse laoreet blandit rutrum. Curabitur tristique sem eget neque scelerisque, sed ornare sapien dapibus. 
-`
+`;
 
-
-doc.pipe(fs.createWriteStream('./file.pdf'));
-doc.addPage()
-doc.image('./Landscape-Color.jpg',{
-  x: 0,
-  y: 0,
-  fit: [doc.page.width, doc.page.height],
-
-})
-doc.text(baseString, {
-  y: 600
-})
-doc.end();
+  doc.pipe(fs.createWriteStream("./file.pdf"));
+  doc.addPage();
+  doc.image("./Landscape-Color.jpg", {
+    x: 0,
+    y: 0,
+    fit: [doc.page.width, doc.page.height],
+  });
+  doc.text(baseString, 0, 300);
+  doc.end();
+};

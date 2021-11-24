@@ -1,0 +1,26 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.input-container > input {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  width: 30;
+}
+.input-container > textarea {
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+#gen {
+  width: 10%;
+}
+.btn-orange {
+  background: #f17f21;
+  color: white;
+  border: 1px solid #f17f21;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+.btn-orange:hover {
+  background: white;
+  color: #f17f21;
+}

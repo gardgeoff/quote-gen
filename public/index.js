@@ -1,12 +1,10 @@
 $(function () {
   console.log("Jquery loaded succcesfuly");
-  let title = $("#title").val();
-  $("#gen").on("click", function () {
-    $.ajax({
-        type: "POST",
-        url: '/download',
-        data: {name: 'geoff'},
 
-      });
+  $("#gen").on("click", function () {
+    let title = $("#title").val();
+    $.post("/download", { title }).done(() => {
+      window.location.href = "/req";
+    });
   });
 });
